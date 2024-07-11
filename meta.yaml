@@ -1,0 +1,43 @@
+package:
+  name: pipy
+  version: 0.1.0
+
+source:
+  path: .
+
+build:
+  noarch: python
+  script: xcopy %SRC_DIR%\\src\\* %SP_DIR% /E /H /C /I
+
+
+requirements:
+  host:
+    - python >=3.9
+    - pip
+  run:
+    - python>=3.9
+    - numpy=1.26.*
+
+test:
+  source_files:
+    - pipy/
+    - tests/
+  imports:
+    - pipy
+    - pipy.calculators
+  commands:
+    - pytest
+
+
+about:
+  home: "http://example.com"
+  license: "MIT"
+  license_file: "LICENSE"
+  summary: "A test package to calculate Pi using various methods."
+  description: "This package provides various methods to calculate the value of Pi. It serves as an educational tool to understand conda package creation."
+  doc_url: "http://example.com/documentation"
+  dev_url: "http://example.com/source"
+
+extra:
+  recipe-maintainers:
+    - julian.grimm@fh-wels.at
