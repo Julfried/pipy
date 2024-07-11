@@ -6,14 +6,15 @@ source:
   path: .
 
 build:
-  noarch: python
-  script: xcopy %SRC_DIR%\\src\\* %SP_DIR% /E /H /C /I
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv"
 
 
 requirements:
   host:
     - python >=3.9
-    - pip
+    - setuptools>=61.0
+    - numpy=1.26.*
   run:
     - python>=3.9
     - numpy=1.26.*
@@ -25,6 +26,8 @@ test:
   imports:
     - pipy
     - pipy.calculators
+  requires:
+    - pytest
   commands:
     - pytest
 

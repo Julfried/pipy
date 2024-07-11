@@ -2,7 +2,7 @@ import unittest
 import math
 from pipy.calculators.pi_calculator import PiCalculator
 
-class TestPiCalculator(unittest.TestCase):
+class TestPiMethods(unittest.TestCase):
     def test_calculate_pi_monte_carlo(self):
         calculator = PiCalculator(num_samples=100000)
         pi_estimate = calculator.calculate_pi_monte_carlo()
