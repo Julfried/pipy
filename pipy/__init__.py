@@ -1,1 +1,1 @@
-from calculators.pi_calculator import PiCalculator
+from .calculators.pi_calculator import PiCalculator

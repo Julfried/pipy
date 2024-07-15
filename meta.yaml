@@ -21,15 +21,11 @@ requirements:
 
 test:
   source_files:
-    - pipy/
-    - tests/
+    - ./pipy/*
+    - ./tests/*
   imports:
     - pipy
     - pipy.calculators
-  requires:
-    - pytest
-  commands:
-    - pytest
 
 
 about:
