@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["pipy", "pipy.calculators", "tests"]
+
+[tool.pytest.ini_options]
+addopts = "-vv"
+testpaths = ["tests"]
+pythonpath = ["."]
