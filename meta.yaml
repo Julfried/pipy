@@ -8,13 +8,12 @@ source:
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m build --skip-dependency-check
 
 
 requirements:
   host:
     - python >=3.9
-    - python-build=1.2.*
+    - {{ pin_compatible('numpy') }}
   run:
     - python>=3.9
     - {{ pin_compatible('numpy') }}
