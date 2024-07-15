@@ -8,15 +8,17 @@ source:
 build:
   noarch: python
   number: 0
-
+  # Even though you're using pip here, it's just to install the directory contents directly without a setup.py. The actual build  and dependencies are handled by conda-build.
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
     - python >=3.9
-    - {{ pin_compatible('numpy') }}
+    - pip
+    - numpy=1.26.*
   run:
     - python>=3.9
-    - {{ pin_compatible('numpy') }}
+    - numpy=1.26.*
 
 test:
   source_files:
