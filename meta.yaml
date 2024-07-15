@@ -15,18 +15,25 @@ requirements:
   host:
     - python >=3.9
     - pip
-    - numpy=1.26.*
   run:
     - python>=3.9
     - numpy=1.26.*
+  channels:
+    - conda-forge
+    - defaults
+
 
 test:
+  requires:
+    - conda-forge::pytest=8.2.*
   source_files:
     - ./pipy/*
     - ./tests/*
   imports:
     - pipy
     - pipy.calculators
+  commands:
+    - pytest
 
 
 about:
