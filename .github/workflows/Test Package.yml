@@ -25,6 +25,7 @@ jobs:
         conda env update --file environment.yml
     - name: Activate the conda environment
       run: |
+        conda init
         conda activate pipy-dev
     - name: Lint with flake8
       run: |
