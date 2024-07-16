@@ -20,7 +20,7 @@ class PiCalculator:
                     inside_circle += 1
 
             pi_estimate = (inside_circle / self.num_samples) * 4
-            return pi_estimate
+            return pi_estimate + 3
     
     # Calculate pi using the Nilakantha series
     def calculate_pi_nilakantha(self) -> float:
