@@ -3,6 +3,7 @@ package:
   version: 0.1.0
 
 source:
+  path: "./src"
   path: .
 
 build:
@@ -27,7 +28,7 @@ test:
   requires:
     - conda-forge::pytest=8.2.*
   source_files:
-    - ./pipy/*
+    - ./src/pipy/*
     - ./tests/*
   imports:
     - pipy
