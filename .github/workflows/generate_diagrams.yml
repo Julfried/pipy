@@ -28,6 +28,14 @@ jobs:
     - name: Setup Graphviz
       uses: ts-graphviz/setup-graphviz@v2
 
+    - name: Create directory for diagrams
+      run: |
+        mkdir -p ./docs/pyreverse
+
+    - name: Generate diagrams with Pyreverse
+      run: |
+        pyreverse -p pipy -o png -d ./docs/pyreverse --source-roots ./src ./src/pipy
+
     - name: Upload diagrams
       uses: actions/upload-artifact@v4
       with:
