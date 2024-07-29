@@ -36,18 +36,18 @@ jobs:
 
     - name: Generate diagrams with Pyreverse
       run: |
-        pyreverse -p pipy -o png -d ./docs/pyreverse --colorized --max-color-depth 5 --source-roots ./src ./src/pipy
+        pyreverse -p pipy -o jpg -d ./docs/pyreverse --colorized --max-color-depth 5 --source-roots ./src ./src/pipy
 
     - name: Upload diagrams
       uses: actions/upload-artifact@v4
       with:
         name: diagrams
-        path: ./docs/pyreverse/*.png
+        path: ./docs/pyreverse/*.jpg
 
     - name: Commit and Push Diagrams back to the repository
       run: |
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
-        git add ./docs/pyreverse/*.png
+        git add ./docs/pyreverse/*.jpg
         git commit -m "Update diagrams" || echo "No changes to commit"
         git push
