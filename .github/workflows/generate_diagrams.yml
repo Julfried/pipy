@@ -30,9 +30,7 @@ jobs:
 
     - name: Generate diagrams with Pyreverse
       run: |
-        pyreverse -o png -p MyProject src/  # Adjust 'src/' and 'MyProject' as needed
-        # dot -Tpng classes.dot -o classes.png
-        # dot -Tpng packages.dot -o packages.png
+        pyreverse -p pipy -o png -d ./docs/pyreverse --source-roots ./src ./src/pipy
 
     - name: Upload diagrams
       uses: actions/upload-artifact@v4
