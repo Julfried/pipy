@@ -5,6 +5,8 @@ on:
 
 jobs:
   generate-diagrams:
+    permissions:
+      contents: write # Grant write permissions to the repository in this job only
     runs-on: ubuntu-latest
 
     steps:
