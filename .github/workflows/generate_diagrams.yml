@@ -1,14 +1,13 @@
 name: Generate Diagrams
 
 on:
-  workflow_dispatch:  # This allows to manually trigger the workflow
+  workflow_dispatch:
 
 jobs:
-  generate-diagrams:
-    permissions:
-      contents: write # Grant write permissions to the repository in this job only
+  setup:
     runs-on: ubuntu-latest
-
+    outputs:
+      cache-key: ${{ steps.cache-keys.outputs.key }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -19,9 +18,7 @@ jobs:
         python-version: '3.12'
 
     - name: Add conda to system path
-      run: |
-        echo $CONDA/bin >> $GITHUB_PATH
-
+      run: echo $CONDA/bin >> $GITHUB_PATH
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
@@ -30,9 +27,18 @@ jobs:
     - name: Setup Graphviz
       uses: ts-graphviz/setup-graphviz@v2
 
+
+  generate-diagrams:
+    needs: setup
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
     - name: Create directory for diagrams
-      run: |
-        mkdir -p ./docs/pyreverse
+      run: mkdir -p ./docs/pyreverse
 
     - name: Generate diagrams with Pyreverse
       run: |
@@ -44,6 +50,22 @@ jobs:
         name: diagrams
         path: ./docs/pyreverse/*.png
 
+
+  process-results:
+    needs: generate-diagrams
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download diagrams
+      uses: actions/download-artifact@v3
+      with:
+        name: diagrams
+        path: ./docs/pyreverse
+        
     - name: Commit and Push Diagrams back to the repository
       run: |
         git config --global user.email "action@github.com"
