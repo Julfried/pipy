@@ -1,0 +1,42 @@
+name: Generate Diagrams
+
+on:
+  workflow_dispatch:  # This allows you to manually trigger the workflow
+
+jobs:
+  generate-diagrams:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.12'
+
+    - name: Add conda to system path
+      run: |
+        echo $CONDA/bin >> $GITHUB_PATH
+
+    - name: Install dependencies
+      run: |
+        conda env update --file environment.yml --name base
+        pip install pylint=3.2.*
+
+    - name: Setup Graphviz
+      uses: ts-graphviz/setup-graphviz@v2
+
+    - name: Generate diagrams with Pyreverse
+      run: |
+        pyreverse -o png -p MyProject src/  # Adjust 'src/' and 'MyProject' as needed
+        # dot -Tpng classes.dot -o classes.png
+        # dot -Tpng packages.dot -o packages.png
+
+    - name: Upload diagrams
+      uses: actions/upload-artifact@v3
+      with:
+        name: diagrams
+        path: |
+          *.png
