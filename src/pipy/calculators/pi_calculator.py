@@ -6,30 +6,37 @@ class PiCalculator:
         self.num_samples = num_samples
 
     def calculate_pi_monte_carlo(self) -> float:
-            """
-            Calculates an estimate of pi using the Monte Carlo method.
+        """ Calculates an estimate of pi using the Monte Carlo method.
 
-            Returns:
-                float: The estimated value of pi.
-            """
-            inside_circle = 0
+        Returns
+        -------
+        The estimated value of pi.
+        """
+        inside_circle = 0
 
-            for _ in range(self.num_samples):
-                x, y = random.random(), random.random()
-                if x**2 + y**2 <= 1:
-                    inside_circle += 1
+        for _ in range(self.num_samples):
+            x, y = random.random(), random.random()
+            if x**2 + y**2 <= 1:
+                inside_circle += 1
 
-            pi_estimate = (inside_circle / self.num_samples) * 4
-            return pi_estimate
+        pi_estimate = (inside_circle / self.num_samples) * 4
+        return pi_estimate
     
     # Calculate pi using the Nilakantha series
     def calculate_pi_nilakantha(self) -> float:
-        """
-        Calculates an estimate of pi using the Nilakantha series.
+        """calculates an estimate of pi using the Nilakantha series.
 
-        Returns:
-            float: An estimate of the value of pi.
-        """
+        Returns
+        -------
+        The estimated value of pi.
+        
+        Example
+        -------
+            from pipy.calculators import PiCalculator as calc
+            calc = PiCalculator(1000000) 
+            calc.calculate_pi_nilakantha() 
+            >>> 3.141592153589902
+        """                           
         pi_estimate = 3
         sign = 1
 
@@ -45,7 +52,8 @@ class PiCalculator:
         Calculates an estimate of pi using the Leibniz formula.
 
         Returns:
-            float: An estimate of the value of pi.
+        --------
+        An estimate of the value of pi.
         """
         pi_estimate = 0
 
@@ -61,7 +69,8 @@ class PiCalculator:
         Calculates an estimate of pi using the Monte Carlo method with NumPy.
 
         Returns:
-            float: The estimated value of pi.
+        --------
+        The estimated value of pi.
         """
         x = np.random.rand(self.num_samples)
         y = np.random.rand(self.num_samples)

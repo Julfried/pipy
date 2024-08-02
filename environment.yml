@@ -6,3 +6,6 @@ dependencies:
   - python=3.12.*
   - numpy=1.26.*
   - pytest=8.2.*
+  - mkdocs=1.6.*
+  - mkdocstrings=0.25.*
+  - mkdocstrings-python=1.10.*

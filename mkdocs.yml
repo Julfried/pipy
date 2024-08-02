@@ -1,0 +1,16 @@
+site_name: PiPy
+nav:
+  - Home: index.md
+
+
+plugins:
+- mkdocstrings:
+    handlers:
+      python:
+        paths: [src]
+        selection:
+          docstring_style: numpy
+        rendering:
+          show_source: true
+        options:
+          docstring_section_style: table
