@@ -9,7 +9,7 @@ plugins:
       python:
         paths: [src]
         selection:
-          docstring_style: numpy
+          docstring_style: google
         rendering:
           show_source: true
         options:

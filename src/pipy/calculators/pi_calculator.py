@@ -3,14 +3,13 @@ import numpy as np
 
 class PiCalculator:
     def __init__(self, num_samples:int):
-        self.num_samples = num_samples
+        self.num_samples = num_samples   
 
     def calculate_pi_monte_carlo(self) -> float:
         """ Calculates an estimate of pi using the Monte Carlo method.
 
-        Returns
-        -------
-        The estimated value of pi.
+        Returns:
+            The estimated value of pi.
         """
         inside_circle = 0
 
@@ -26,16 +25,15 @@ class PiCalculator:
     def calculate_pi_nilakantha(self) -> float:
         """calculates an estimate of pi using the Nilakantha series.
 
-        Returns
-        -------
-        The estimated value of pi.
+        Returns:
+            The estimated value of pi.
         
-        Example
-        -------
+        Examples:
+            >>>
             from pipy.calculators import PiCalculator as calc
             calc = PiCalculator(1000000) 
             calc.calculate_pi_nilakantha() 
-            >>> 3.141592153589902
+            3.141592153589902
         """                           
         pi_estimate = 3
         sign = 1
@@ -48,12 +46,17 @@ class PiCalculator:
     
     # Calculate pi using the Leibniz series
     def calculate_pi_leibniz(self) -> float:
-        """
-        Calculates an estimate of pi using the Leibniz formula.
+        """ Calculates an estimate of pi using the Leibniz series.
 
         Returns:
-        --------
-        An estimate of the value of pi.
+            The estimated value of pi.
+        
+        Examples:
+            >>>
+            from pipy.calculators import PiCalculator as calc
+            calc = PiCalculator(1000000) 
+            calc.calculate_pi_leibniz() 
+            3.141592153589902
         """
         pi_estimate = 0
 
@@ -65,12 +68,17 @@ class PiCalculator:
     
     # Calculate pi using the Monte Carlo method with numpy
     def calculate_pi_monte_carlo_numpy(self) -> float:
-        """
-        Calculates an estimate of pi using the Monte Carlo method with NumPy.
+        """ Calculates an estimate of pi using the Monte Carlo method with numpy.
 
         Returns:
-        --------
-        The estimated value of pi.
+            The estimated value of pi.
+        
+        Examples:
+            >>>
+            from pipy.calculators import PiCalculator as calc
+            calc = PiCalculator(1000000) 
+            calc.calculate_pi_monte_carlo_numpy() 
+            3.141592153589902
         """
         x = np.random.rand(self.num_samples)
         y = np.random.rand(self.num_samples)
